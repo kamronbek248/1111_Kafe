@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="uz" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1111 KAFE — Eng mazali va sifatli taomlar maskani</title>
+<link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+<link rel="manifest" href="favicon_io/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fbf6ee;--surface:#fff;--surface2:#f3ebdd;--text:#2a1c12;--muted:#7a6a5b;
+  --gold:#b8861b;--gold2:#d9a62e;--line:#e6dac6;--shadow:0 10px 30px rgba(60,40,10,.12);
+  --head:'Fraunces',Georgia,serif;--body:'Manrope',system-ui,sans-serif;
+}
+[data-theme="dark"]{
+  --bg:#17100b;--surface:#241912;--surface2:#2e2017;--text:#f6ecdc;--muted:#b3a18d;
+  --gold:#e0b04a;--gold2:#f2c45e;--line:#3a2a1e;--shadow:0 10px 30px rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+img{max-width:100%;display:block}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.container{width:min(1140px,92%);margin-inline:auto}
+section{padding:72px 0}
+h1,h2,h3{font-family:var(--head);line-height:1.15}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:28px;max-width:56ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 26px;border-radius:999px;background:linear-gradient(135deg,var(--gold2),var(--gold));color:#1b1209;font-weight:700;transition:transform .2s,box-shadow .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(217,166,46,.4);filter:brightness(1.05)}
+.btn:active{transform:translateY(0)}
+.btn.ghost{background:transparent;border:1.5px solid var(--gold);color:var(--gold);box-shadow:none}
+.btn.ghost:hover{background:var(--gold);color:#1b1209}
+
+/* Header */
+header{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
+.logo{font-family:var(--head);font-weight:800;font-size:1.45rem;color:var(--gold);text-decoration:none;letter-spacing:.5px}
+.logo span{color:var(--text)}
+nav ul{display:flex;gap:26px;list-style:none}
+nav a{color:var(--text);text-decoration:none;font-weight:500;position:relative;padding:4px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--gold);transition:width .25s}
+nav a:hover::after{width:100%}
+.actions{display:flex;align-items:center;gap:8px}
+.icon-btn{height:42px;min-width:42px;padding:0 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform .2s,border-color .2s;font-weight:700;font-size:.9rem}
+.icon-btn:hover{transform:translateY(-2px);border-color:var(--gold)}
+#cartTotalTop{color:var(--gold)}
+.badge{background:var(--gold);color:#1b1209;border-radius:999px;min-width:20px;height:20px;font-size:.75rem;display:grid;place-items:center;padding:0 5px}
+.burger{display:none}
+
+/* Hero */
+.hero{min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 0;
+  background:linear-gradient(90deg,rgba(18,10,4,.92) 0%,rgba(18,10,4,.55) 60%,rgba(18,10,4,.35) 100%),
+  url("https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1600&q=70") center/cover}
+.hero .container{position:relative}
+.hero h1{color:#fff;font-size:clamp(2.2rem,6.5vw,4.4rem);max-width:15ch;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p{color:#eadcc6;max-width:48ch;margin-bottom:30px;font-size:1.05rem}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.hero .btn.ghost{color:#fff;border-color:#fff}
+.hero .btn.ghost:hover{background:#fff;color:#1b1209}
+
+/* Filter */
+.tools{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:28px}
+.search{flex:1 1 260px;position:relative}
+.search input{width:100%;padding:13px 18px 13px 44px;border-radius:999px;border:1px solid var(--line);background:var(--surface);transition:border-color .2s,box-shadow .2s}
+.search input:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 3px rgba(217,166,46,.25)}
+.search::before{content:"🔍";position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:.95rem}
+.cats{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;padding:10px 18px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-weight:600;transition:all .2s}
+.chip:hover{border-color:var(--gold);transform:translateY(-2px)}
+.chip.active{background:var(--gold);border-color:var(--gold);color:#1b1209}
+
+/* Products */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card .img{aspect-ratio:4/3;overflow:hidden;background:var(--surface2)}
+.card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover img{transform:scale(1.07)}
+.card .body{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card .tag{font-size:.78rem;color:var(--gold);font-weight:700}
+.card h3{font-size:1.25rem}
+.card p{color:var(--muted);font-size:.92rem;flex:1}
+.price{font-family:var(--head);font-weight:800;font-size:1.3rem;color:var(--gold)}
+.buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px;flex-wrap:wrap}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--surface2)}
+.qty button{width:34px;height:34px;border-radius:50%;font-size:1.1rem;font-weight:700;transition:background .2s}
+.qty button:hover{background:var(--gold);color:#1b1209}
+.qty span{min-width:26px;text-align:center;font-weight:700}
+.card .btn{padding:10px 16px;font-size:.9rem;flex:1}
+.empty{text-align:center;color:var(--muted);padding:40px 0;grid-column:1/-1}
+
+/* About / contact */
+.about{background:var(--surface2)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.split img{border-radius:20px;box-shadow:var(--shadow);aspect-ratio:4/3;object-fit:cover;width:100%}
+.stats{display:flex;gap:28px;margin-top:22px;flex-wrap:wrap}
+.stats b{display:block;font-family:var(--head);font-size:1.7rem;color:var(--gold)}
+.stats small{color:var(--muted)}
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.info{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;transition:transform .3s,border-color .3s}
+.info:hover{transform:translateY(-4px);border-color:var(--gold)}
+.info h3{font-size:1.1rem;margin-bottom:6px}
+.info p,.info a{color:var(--muted);text-decoration:none}
+
+/* Cart */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .3s;z-index:90}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(440px,100%);background:var(--bg);z-index:100;transform:translateX(100%);transition:transform .35s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.4)}
+.drawer.open{transform:none}
+.drawer header{position:static;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.drawer h2{font-size:1.4rem;margin:0}
+.drawer .scroll{flex:1;overflow-y:auto;padding:16px 20px}
+.item{display:grid;grid-template-columns:64px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.item img{width:64px;height:64px;border-radius:12px;object-fit:cover}
+.item h4{font-size:.95rem;line-height:1.3}
+.item small{color:var(--gold);font-weight:700}
+.item .qty button{width:28px;height:28px}
+.del{color:#d9534f;font-size:1.1rem;padding:6px;border-radius:8px}
+.del:hover{background:rgba(217,83,79,.15)}
+.sum{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:800;padding:16px 0}
+.sum span:last-child{color:var(--gold);font-family:var(--head)}
+form label{display:block;font-size:.85rem;font-weight:600;margin:12px 0 5px}
+form input,form textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface)}
+form input:focus,form textarea:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 3px rgba(217,166,46,.25)}
+form input.err{border-color:#d9534f}
+.mode{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mode label{margin:0;cursor:pointer}
+.mode input{position:absolute;opacity:0}
+.mode span{display:block;text-align:center;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:600;transition:all .2s}
+.mode input:checked+span{background:var(--gold);color:#1b1209;border-color:var(--gold)}
+.mode input:focus-visible+span{outline:2px solid var(--gold2)}
+.submit{width:100%;margin-top:16px}
+.submit:disabled{opacity:.6;pointer-events:none}
+.cart-empty{text-align:center;color:var(--muted);padding:50px 0}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,120px);background:var(--surface);color:var(--text);border:1px solid var(--gold);padding:12px 22px;border-radius:999px;box-shadow:var(--shadow);z-index:200;transition:transform .35s;max-width:92%;text-align:center}
+.toast.show{transform:translate(-50%,0)}
+
+/* Footer */
+footer{background:#120b06;color:#cdbca6;padding:56px 0 24px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:30px;margin-bottom:30px}
+footer h4{color:#f2c45e;font-family:var(--head);margin-bottom:10px}
+footer a{color:#cdbca6;text-decoration:none;display:block;margin-bottom:6px;transition:color .2s}
+footer a:hover{color:#f2c45e}
+.copy{border-top:1px solid #2e2017;padding-top:18px;text-align:center;font-size:.85rem}
+
+@media(max-width:820px){
+  nav{position:absolute;top:68px;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .3s}
+  nav.open{max-height:300px}
+  nav ul{flex-direction:column;gap:0;padding:8px 4%}
+  nav li a{display:block;padding:12px 0}
+  .burger{display:inline-flex}
+  .split{grid-template-columns:1fr}
+  section{padding:52px 0}
+  #cartTotalTop{display:none}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo">1111 <span>KAFE</span></a>
+    <nav id="nav">
+      <ul>
+        <li><a href="#home">Bosh sahifa</a></li>
+        <li><a href="#menu">Taomlar</a></li>
+        <li><a href="#about">Biz haqimizda</a></li>
+        <li><a href="#contact">Aloqa</a></li>
+      </ul>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" id="themeBtn" aria-label="Rejimni almashtirish">🌙</button>
+      <button class="icon-btn" id="cartBtn" aria-label="Savatcha">🛒 <span class="badge" id="cartCount">0</span><span id="cartTotalTop">0 so'm</span></button>
+      <button class="icon-btn burger" id="burger" aria-label="Menyu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="container">
+    <h1>1111 KAFE — Eng mazali va sifatli <em>taomlar</em> maskani</h1>
+    <p>Yangi pishirilgan burgerlar, lavashlar va ichimliklar. Buyurtmangizni saytdan bering — biz tez va issiq yetkazamiz.</p>
+    <div class="row">
+      <a href="#menu" class="btn">Menyuni ko'rish</a>
+      <a href="#contact" class="btn ghost">Biz bilan bog'lanish</a>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <div class="container">
+    <h2>Bizning menyu</h2>
+    <p class="sub">Kategoriyani tanlang yoki taom nomini qidiring.</p>
+    <div class="tools">
+      <div class="search"><input id="search" type="search" placeholder="Taom nomini yozing..." aria-label="Qidiruv"></div>
+      <div class="cats" id="cats"></div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container split">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=70" alt="1111 KAFE ichki ko'rinishi" loading="lazy">
+    <div>
+      <h2>Biz haqimizda</h2>
+      <p class="sub">1111 KAFE — har bir taomga alohida e'tibor beradigan oilaviy maskan. Biz faqat yangi masalliqlardan foydalanamiz, go'shtni har kuni yangilaymiz va sousni o'zimiz tayyorlaymiz.</p>
+      <p style="color:var(--muted)">Do'stlar bilan o'tirish uchun ham, ish orasida tez tushlik uchun ham qulay. Uyingizga yetkazib berish yoki o'zingiz kelib olib ketish mumkin.</p>
+      <div class="stats">
+        <div><b>100%</b><small>yangi masalliq</small></div>
+        <div><b>30 daq</b><small>o'rtacha yetkazish</small></div>
+        <div><b>11:00–23:00</b><small>har kuni ochiqmiz</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <h2>Aloqa</h2>
+    <p class="sub">Savolingiz bo'lsa yoki stol band qilmoqchi bo'lsangiz, qo'ng'iroq qiling.</p>
+    <div class="contacts">
+      <div class="info"><h3>📍 Manzil</h3><p>Navoiy sh., Arg'un shox ko'chasi, 571-uy</p></div>
+      <div class="info"><h3>📞 Telefon</h3><a href="tel:+998936621111">+998 93 662 11 11</a><br><a href="tel:+998934317333">+998 93 431 73 33</a></div>
+      <div class="info"><h3>⏰ Ish vaqti</h3><p>Har kuni: 8:00 — 23:00</p></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="fgrid">
+      <div><h4>1111 KAFE</h4><p>Eng mazali va sifatli taomlar maskani.</p></div>
+      <div><h4>Manzil va vaqt</h4><p>Navoiy sh., Arg'un shox ko'chasi, 571-uy</p><p>Har kuni 8:00 — 23:00</p></div>
+      <div><h4>Telefon</h4><a href="tel:+998936621111">+998 93 662 11 11</a><a href="tel:+998934317333">+998 93 431 73 33</a></div>
+      <div><h4>Ijtimoiy tarmoqlar</h4><a href="https://www.instagram.com/1111_kafe/" target="_blank" rel="noopener">Instagram</a><a href="https://t.me/developerkamron" target="_blank" rel="noopener">Telegram</a></div>
+    </div>
+    <div class="copy">© <span id="year"></span> 1111 KAFE. Barcha huquqlar himoyalangan.</div>
+  </div>
+</footer>
+
+<!-- Savatcha -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Savatcha">
+  <header><h2>Savatcha</h2><button class="icon-btn" id="closeCart" aria-label="Yopish">✕</button></header>
+  <div class="scroll">
+    <div id="cartItems"></div>
+    <div id="checkout" hidden>
+      <div class="sum"><span>Jami summa:</span><span id="cartTotal">0 so'm</span></div>
+      <form id="orderForm" novalidate>
+        <label for="name">Ismingiz</label>
+        <input id="name" required autocomplete="name" placeholder="Ism">
+        <label for="phone">Telefon raqami</label>
+        <input id="phone" type="tel" required value="+998" autocomplete="tel" placeholder="+998 90 123 45 67">
+        <label>Qabul qilish usuli</label>
+        <div class="mode">
+          <label><input type="radio" name="mode" value="delivery" checked><span>🚚 Yetkazib berish</span></label>
+          <label><input type="radio" name="mode" value="pickup"><span>🏃 Olib ketish</span></label>
+        </div>
+        <div id="addrWrap">
+          <label for="address">Manzil</label>
+          <input id="address" autocomplete="street-address" placeholder="Ko'cha, uy, mo'ljal">
+        </div>
+        <label for="comment">Izoh (ixtiyoriy)</label>
+        <textarea id="comment" rows="2" placeholder="Qo'shimcha istaklar..."></textarea>
+        <button type="submit" class="btn submit" id="submitBtn">Buyurtmani tasdiqlash</button>
+      </form>
+    </div>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ============ SOZLAMALAR (shu yerni o'zgartiring) ============ */
+const BOT_TOKEN = "8704275443:AAHBiHpR3xZHKPvjX7cIK9s9wMR-zeiin60";   // @BotFather bergan token
+const CHAT_ID   = "8150165078";     // buyurtma boradigan chat/guruh ID
+const CAFE_NAME = "1111 KAFE";
+
+/* ============ TAOMLAR RO'YXATI ============
+   Yangi taom qo'shish: shu massivga yangi obyekt qo'shing.
+   Kategoriya (category) avtomatik filtrga chiqadi. O'chirish: obyektni olib tashlang. */
+const products = [
+  {
+    id: 1,
+    name: "1111 KFC",
+    description: "Qarsildoq, mazali.",
+    price: 65000,
+    category: "Fast Food",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6XEoZ3tL5nUVmegipjaAT_kjdYRAy8Js-XHuNdDen7A&s=10"
+  },
+  {
+    id: 2,
+    name: "1111 Samarqandcha Osh",
+    description: "To‘yimli, yog‘li..",
+    price: 35000,
+    category: "MIlliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOQ24zs5fKHWIW52L3L7DyV46WC4L2QBu7VJHfXA384g&s=10"
+  },
+  {
+    id: 3,
+    name: "1111 Sariyog'li Tabaka",
+    description: "Shirin tovuq go'shtli va sariyog'li.",
+    price: 60000,
+    category: "Fast Food",
+    image: "https://dostavo4ka.uz/upload-file/2023/12/24/6347/d1a9cf4d-6e2a-4dba-8c89-a3084f65bc23.jpg"
+  },
+  {
+    id: 4,
+    name: "1111 Sho'rva",
+    description: "Suyuq, to‘yimli.",
+    price: 35000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5evmNtlQ9wW6rd1teh4y03wRoNJaW4SmRwhpEm7T74g&s=10"
+  },
+  {
+    id: 5,
+    name: "1111 Pilmen",
+    description: "Mazali, yumshoq.",
+    price: 35000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKnLklDTVjeuk6CI2iKog_lU5hT-KcmOXZywNbZkg8Uw&s=10"
+  },
+  {
+    id: 6,
+    name: "1111 Manti",
+    description: "Yumshoq, sersuv. (DONASI)",
+    price: 10000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT28a8nPbEpfTF1k8uJqB_Qouc5m2Z-PQ92T2LCcZT_6Q&s=10"
+  },
+  {
+    id: 7,
+    name: "1111 Qovurma Lag'mon",
+    description: "Achchiq, to‘yimli.",
+    price: 35000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr2bkoZTnP3AUfKSfF6zOlI5LbE3ChACP74Fy_HHlIBw&s=10"
+  },
+  {
+    id: 8,
+    name: "1111 Somsa",
+    description: "Qarsildoq, mazali.",
+    price: 13000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNRT3AgScgvO7cXvngzSPyuD-7pxSi5ToncyZTwCYQiw&s=10"
+  },
+  {
+    id: 9,
+    name: "1111 Shashlik jaz",
+    description: "Tutunli, shirali.",
+    price: 27000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg6mDokfZmG9m5jSM7huIvGaCeEq7fdHXs4_lIuFgVvA&s=10"
+  },
+  {
+    id: 10,
+    name: "1111 Shashlik qanotcha",
+    description: "Yumshoq, shirali.",
+    price: 20000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAr9O1AfUG5OJjE5fSi3LMGU-Ieip7O0__SaWixzgDg&s=10"
+  },
+  {
+    id: 11,
+    name: "1111 Shashlik jigar",
+    description: "Yumshoq, xushbo‘y.",
+    price: 22000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPNNaBKTs-HvNBW9rtCZ-LctX71Ef4uKvodcUGDZn8KA&s"
+  },
+  {
+    id: 12,
+    name: "1111 Shashlik qiyma",
+    description: "Shirali, ziravorli.",
+    price: 22000,
+    category: "Milliy taom",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD9W3MUqA_oSzesc0Om7IKnqF61ZFKwBpFYhcaoXGblw&s=10"
+  }
+  // Namuna: { id: 3, name: "Coca-Cola 0.5L", description: "Sovuq ichimlik", price: 8000, category: "Ichimliklar", image: "URL" },
+];
+
+/* ============ YORDAMCHI FUNKSIYALAR ============ */
+const $ = s => document.querySelector(s);
+const fmt = n => n.toLocaleString("en-US").replace(/,/g, " ") + " so'm";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let cart = {};          // { id: soni }
+let picks = {};         // kartochkadagi tanlangan son
+let activeCat = "Barchasi";
+let query = "";
+
+try { cart = JSON.parse(localStorage.getItem("1111cart") || "{}"); } catch(e) { cart = {}; }
+const saveCart = () => { try { localStorage.setItem("1111cart", JSON.stringify(cart)); } catch(e) {} };
+
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove("show"), 2600);
+}
+
+/* ============ KATEGORIYA VA TAOMLAR ============ */
+function renderCats(){
+  const cats = ["Barchasi", ...new Set(products.map(p => p.category))];
+  $("#cats").innerHTML = cats.map(c =>
+    `<button class="chip ${c===activeCat?"active":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("");
+}
+function renderProducts(){
+  const list = products.filter(p =>
+    (activeCat === "Barchasi" || p.category === activeCat) &&
+    p.name.toLowerCase().includes(query.toLowerCase()));
+  $("#grid").innerHTML = list.length ? list.map(p => {
+    const q = picks[p.id] || 1;
+    return `<article class="card">
+      <div class="img"><img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy"></div>
+      <div class="body">
+        <span class="tag">${esc(p.category)}</span>
+        <h3>${esc(p.name)}</h3>
+        <p>${esc(p.description)}</p>
+        <div class="price">${fmt(p.price)}</div>
+        <div class="buy">
+          <div class="qty">
+            <button data-act="dec" data-id="${p.id}" aria-label="Kamaytirish">−</button>
+            <span id="q${p.id}">${q}</span>
+            <button data-act="inc" data-id="${p.id}" aria-label="Oshirish">+</button>
+          </div>
+          <button class="btn" data-act="add" data-id="${p.id}">Savatchaga qo'shish</button>
+        </div>
+      </div></article>`;
+  }).join("") : `<p class="empty">Hech narsa topilmadi 😔 Boshqa nom yoki kategoriyani sinab ko'ring.</p>`;
+}
+
+$("#cats").addEventListener("click", e => {
+  const b = e.target.closest("[data-cat]"); if(!b) return;
+  activeCat = b.dataset.cat; renderCats(); renderProducts();
+});
+$("#search").addEventListener("input", e => { query = e.target.value.trim(); renderProducts(); });
+
+$("#grid").addEventListener("click", e => {
+  const b = e.target.closest("[data-act]"); if(!b) return;
+  const id = +b.dataset.id, act = b.dataset.act;
+  if(act === "inc" || act === "dec"){
+    picks[id] = Math.max(1, (picks[id] || 1) + (act === "inc" ? 1 : -1));
+    $("#q"+id).textContent = picks[id];
+  } else {
+    const n = picks[id] || 1;
+    cart[id] = (cart[id] || 0) + n; picks[id] = 1; $("#q"+id).textContent = 1;
+    saveCart(); renderCart();
+    toast(`${products.find(p=>p.id===id).name} × ${n} savatchaga qo'shildi`);
+  }
+});
+
+/* ============ SAVATCHA ============ */
+function cartLines(){
+  return Object.entries(cart).map(([id, qty]) => {
+    const p = products.find(x => x.id === +id);
+    return p ? { p, qty, sum: p.price * qty } : null;
+  }).filter(Boolean);
+}
+function renderCart(){
+  const lines = cartLines();
+  const total = lines.reduce((s,l) => s + l.sum, 0);
+  const count = lines.reduce((s,l) => s + l.qty, 0);
+  $("#cartCount").textContent = count;
+  $("#cartTotalTop").textContent = fmt(total);
+  $("#cartTotal").textContent = fmt(total);
+  $("#checkout").hidden = !lines.length;
+  $("#cartItems").innerHTML = lines.length ? lines.map(l => `
+    <div class="item">
+      <img src="${esc(l.p.image)}" alt="">
+      <div>
+        <h4>${esc(l.p.name)}</h4><small>${fmt(l.sum)}</small>
+        <div class="qty" style="margin-top:6px">
+          <button data-c="dec" data-id="${l.p.id}" aria-label="Kamaytirish">−</button>
+          <span>${l.qty}</span>
+          <button data-c="inc" data-id="${l.p.id}" aria-label="Oshirish">+</button>
+        </div>
+      </div>
+      <button class="del" data-c="del" data-id="${l.p.id}" aria-label="O'chirish">🗑</button>
+    </div>`).join("") : `<div class="cart-empty">🛒<br>Savatchangiz bo'sh.<br>Menyudan taom tanlang.</div>`;
+}
+$("#cartItems").addEventListener("click", e => {
+  const b = e.target.closest("[data-c]"); if(!b) return;
+  const id = b.dataset.id, a = b.dataset.c;
+  if(a === "inc") cart[id]++;
+  if(a === "dec") cart[id] = Math.max(1, cart[id] - 10);
+  if(a === "del") delete cart[id];
+  saveCart(); renderCart();
+});
+
+const openCart = () => { $("#drawer").classList.add("open"); $("#overlay").classList.add("open"); };
+const closeCart = () => { $("#drawer").classList.remove("open"); $("#overlay").classList.remove("open"); };
+$("#cartBtn").onclick = openCart;
+$("#closeCart").onclick = closeCart;
+$("#overlay").onclick = closeCart;
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeCart(); });
+
+/* Yetkazish / Olib ketish */
+document.querySelectorAll('input[name="mode"]').forEach(r => r.addEventListener("change", () => {
+  $("#addrWrap").hidden = r.value === "pickup" && r.checked;
+}));
+
+/* ============ TELEGRAMGA YUBORISH ============ */
+$("#orderForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("#name").value.trim();
+  const phone = $("#phone").value.replace(/[\s()-]/g, "");
+  const mode = document.querySelector('input[name="mode"]:checked').value;
+  const address = $("#address").value.trim();
+  const comment = $("#comment").value.trim();
+
+  ["#name","#phone","#address"].forEach(s => $(s).classList.remove("err"));
+  let bad = null;
+  if(name.length < 2) bad = "#name";
+  else if(!/^\+998\d{9}$/.test(phone)) bad = "#phone";
+  else if(mode === "delivery" && address.length < 3) bad = "#address";
+  if(bad){ $(bad).classList.add("err"); $(bad).focus();
+    toast(bad === "#phone" ? "Telefon raqamni +998901234567 ko'rinishida kiriting" : "Iltimos, maydonni to'ldiring"); return; }
+
+  const lines = cartLines();
+  if(!lines.length) return toast("Savatchangiz bo'sh");
+  const total = lines.reduce((s,l) => s + l.sum, 0);
+  const num = n => n.toLocaleString("en-US");
+
+  const text =
+`🛒 <b>YANGI BUYURTMA — ${esc(CAFE_NAME)}</b>
+
+👤 <b>Mijoz:</b> ${esc(name)}
+📞 <b>Tel:</b> ${esc(phone)}
+📍 <b>Manzil:</b> ${mode === "pickup" ? "Olib ketish (Pick-up)" : esc(address)}
+
+🍔 <b>Buyurtma qilingan taomlar:</b>
+${lines.map((l,i) => `${i+1}. ${esc(l.p.name)} x ${l.qty} = ${num(l.sum)} so'm`).join("\n")}
+
+💰 <b>Jami summa:</b> ${num(total)} so'm
+📝 <b>Izoh:</b> ${comment ? esc(comment) : "—"}
+⏰ <b>Vaqt:</b> ${new Date().toLocaleString("uz-UZ", {hour12:false})}`;
+
+  const btn = $("#submitBtn"); btn.disabled = true; btn.textContent = "Yuborilmoqda...";
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ chat_id: CHAT_ID, text, parse_mode: "HTML" })
+    });
+    const data = await res.json();
+    if(!data.ok) throw new Error(data.description || "Telegram xatosi");
+    cart = {}; saveCart(); renderCart(); $("#orderForm").reset(); $("#phone").value = "+998";
+    closeCart(); toast("✅ Buyurtmangiz qabul qilindi! Tez orada bog'lanamiz.");
+  } 
+  catch(err){
+    console.error(err);
+    toast("❌ Yuborib bo'lmadi. Internetni tekshiring yoki qo'ng'iroq qiling.");
+  } 
+  finally {
+    btn.disabled = false; btn.textContent = "Buyurtmani tasdiqlash";
+  }
+});
+
+/* ============ TUN / KUN REJIMI VA MENYU ============ */
+const root = document.documentElement;
+function setTheme(t){
+  root.dataset.theme = t; $("#themeBtn").textContent = t === "dark" ? "🌙" : "☀️";
+  try { localStorage.setItem("1111theme", t); } catch(e) {}
+}
+let saved = null; try { saved = localStorage.getItem("1111theme"); } catch(e) {}
+setTheme(saved || "dark");
+$("#themeBtn").onclick = () => setTheme(root.dataset.theme === "dark" ? "light" : "dark");
+
+$("#burger").onclick = () => $("#nav").classList.toggle("open");
+$("#nav").addEventListener("click", e => { if(e.target.tagName === "A") $("#nav").classList.remove("open"); });
+$("#year").textContent = new Date().getFullYear();
+
+renderCats(); renderProducts(); renderCart();
+</script>
+</body>
+</html>
